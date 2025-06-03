@@ -4,8 +4,8 @@ import useEmblaCarousel, { type UseEmblaCarouselType } from "embla-carousel-reac
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import * as React from "react";
 
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { Button } from "@/src/components/ui/button";
+import { cn } from "@/src/lib/utils";
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -173,8 +173,8 @@ const CarouselPrevious = React.forwardRef<HTMLButtonElement, React.ComponentProp
     return (
       <Button
         ref={ref}
+        type="button"
         variant={variant}
-        size={size}
         className={cn(
           "absolute  h-8 w-8 rounded-full",
           orientation === "horizontal"
@@ -202,7 +202,6 @@ const CarouselNext = React.forwardRef<HTMLButtonElement, React.ComponentProps<ty
       <Button
         ref={ref}
         variant={variant}
-        size={size}
         className={cn(
           "absolute h-8 w-8 rounded-full",
           orientation === "horizontal"
