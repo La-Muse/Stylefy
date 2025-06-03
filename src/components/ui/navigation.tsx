@@ -24,7 +24,6 @@ export function Navigation() {
         className={`flex flex-col items-center justify-center py-2 px-4 relative transition-colors ${
           isActive ? "text-black" : "text-gray-500"
         }`}
-        aria-label={label}
       >
         {isActive && (
           <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-black rounded-full" />
