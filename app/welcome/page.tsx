@@ -2,11 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 
-interface WelcomeScreenProps {
-  onNext: () => void
-}
-
-export function WelcomeScreen({ onNext }: WelcomeScreenProps) {
+export default function WelcomePage() {
   return (
     <div className="flex flex-col h-full">
       <div
@@ -23,7 +19,7 @@ export function WelcomeScreen({ onNext }: WelcomeScreenProps) {
           スタイリング
         </h1>
         <p className="text-gray-600 mb-6">骨格診断であなたに最適なファッションスタイルを見つけましょう</p>
-        <Button onClick={onNext} className="w-full mb-3">
+        <Button onClick={() => {}} className="w-full mb-3">
           骨格診断をはじめる
         </Button>
         <Button variant="ghost" className="w-full">

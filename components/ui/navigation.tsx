@@ -1,37 +1,52 @@
 "use client"
 
-import type { ScreenType } from "@/app/page"
+import { Archive, Home, Shirt, User } from "lucide-react"
+import { useRouter, usePathname } from "next/navigation"
 
-interface NavigationProps {
-  currentScreen: ScreenType
-  onNavigate: (screen: ScreenType) => void
-}
+export function Navigation() {
+  const router = useRouter()
+  const pathname = usePathname()
 
-export function Navigation({ currentScreen, onNavigate }: NavigationProps) {
-  const navItems = [
-    { id: "home-screen", icon: "fas fa-home", label: "ホーム" },
-    { id: "tryon-screen", icon: "fas fa-tshirt", label: "仮装試着" },
-    { id: "closet-screen", icon: "fas fa-archive", label: "Myクローゼット" },
-    { id: "mypage-screen", icon: "fas fa-user", label: "アカウント" },
-  ]
+  const NavButton = ({ 
+    path, 
+    icon: Icon, 
+    label 
+  }: { 
+    path: string
+    icon: React.ComponentType<{ size?: number; fill?: string; className?: string }>
+    label: string 
+  }) => {
+    const isActive = pathname === path
+    return (
+      <button
+        onClick={() => router.push(path)}
+        className={`flex flex-col items-center justify-center py-2 px-4 relative transition-colors ${
+          isActive ? "text-black" : "text-gray-500"
+        }`}
+      >
+       {isActive && (
+          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-black rounded-full" />
+        )}
+        <Icon
+          size={24}
+          fill={isActive ? "currentColor" : "none"}
+          className={`mb-1 ${isActive ? "text-black" : "text-gray-500"}`}
+        />
+        <span className={`text-xs font-medium ${
+          isActive ? "text-black" : "text-gray-500"
+        }`}>
+          {label}
+        </span>
+      </button>
+    )
+  }
 
   return (
-    <div className="absolute bottom-0 w-full h-14 bg-white flex justify-around items-center border-t border-gray-200">
-      {navItems.map((item) => (
-        <button
-          key={item.id}
-          onClick={() => onNavigate(item.id as ScreenType)}
-          className={`flex flex-col items-center py-1 relative ${
-            currentScreen === item.id ? "text-gray-900" : "text-gray-500"
-          }`}
-        >
-          {currentScreen === item.id && (
-            <div className="absolute top-0 left-1/4 w-1/2 h-0.5 bg-gray-900 rounded-full" />
-          )}
-          <i className={`${item.icon} text-xl mb-0.5`}></i>
-          <span className="text-xs">{item.label}</span>
-        </button>
-      ))}
+    <div className=" w-full absolute bottom-0 left-0 right-0 h-16 bg-white flex justify-around items-center border-t border-gray-300 shadow-lg z-50">
+      <NavButton path="/" icon={Home} label="ホーム" />
+      <NavButton path="/tryon" icon={Shirt} label="仮装試着" />
+      <NavButton path="/closet" icon={Archive} label="Myクローゼット" />
+      <NavButton path="/mypage" icon={User} label="アカウント" />
     </div>
   )
 }

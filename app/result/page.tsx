@@ -3,12 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Header } from "@/components/ui/header"
 
-interface ResultScreenProps {
-  onNext: () => void
-  onBack: () => void
-}
-
-export function ResultScreen({ onNext, onBack }: ResultScreenProps) {
+export default function ResultPage() {
   return (
     <div className="h-full">
       <Header title="診断結果" centered />
@@ -76,7 +71,7 @@ export function ResultScreen({ onNext, onBack }: ResultScreenProps) {
               スタイリングアドバイスを受け取りましょう
             </p>
 
-            <Button onClick={onNext} className="w-full font-semibold tracking-wide">
+            <Button className="w-full font-semibold tracking-wide">
               アカウント登録して詳細を見る
             </Button>
           </div>

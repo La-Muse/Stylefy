@@ -4,7 +4,7 @@ interface SearchScreenProps {
   onBack: () => void
 }
 
-export function SearchScreen({ onBack }: SearchScreenProps) {
+export default function SearchPage() {
   const categories = ["すべて", "トップス", "アウター", "ボトムス", "ワンピース"]
 
   const items = [

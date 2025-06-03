@@ -4,11 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Header } from "@/components/ui/header"
 
-interface TryOnScreenProps {
-  onSave: () => void
-}
-
-export function TryOnScreen({ onSave }: TryOnScreenProps) {
+export default function TryOnPage() {
   const [selectedCategory, setSelectedCategory] = useState("トップス")
   const [selectedItem, setSelectedItem] = useState(0)
 
@@ -94,7 +90,7 @@ export function TryOnScreen({ onSave }: TryOnScreenProps) {
               <Button variant="outline" className="flex-1 text-sm h-10">
                 <i className="fas fa-share-alt mr-1"></i> シェア
               </Button>
-              <Button onClick={onSave} className="flex-1 text-sm h-10">
+              <Button className="flex-1 text-sm h-10">
                 <i className="fas fa-heart mr-1"></i> 保存
               </Button>
             </div>

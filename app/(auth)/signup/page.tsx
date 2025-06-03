@@ -4,15 +4,10 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Header } from "@/components/ui/header"
 
-interface SignupScreenProps {
-  onNext: () => void
-  onBack: () => void
-}
-
-export function SignupScreen({ onNext, onBack }: SignupScreenProps) {
+export default function SignupPage() {
   return (
     <div className="h-full">
-      <Header title="アカウント登録" onBack={onBack} />
+      <Header title="アカウント登録" onBack={() => {}} />
 
       <div className="p-4">
         <p className="text-gray-600 mb-4">骨格ストレートタイプに合わせたパーソナルスタイリングを受け取りましょう</p>
@@ -42,7 +37,7 @@ export function SignupScreen({ onNext, onBack }: SignupScreenProps) {
             </p>
           </div>
 
-          <Button onClick={onNext} className="w-full">
+          <Button onClick={() => {}} className="w-full">
             登録する
           </Button>
 

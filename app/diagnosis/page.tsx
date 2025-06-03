@@ -11,7 +11,7 @@ interface DiagnosisScreenProps {
 
 type BodyType = "straight" | "wave" | "natural" | null
 
-export function DiagnosisScreen({ onNext, onBack }: DiagnosisScreenProps) {
+export default function DiagnosisPage({ onNext, onBack }: DiagnosisScreenProps) {
   const [selectedType, setSelectedType] = useState<BodyType>(null)
 
   const bodyTypes = [

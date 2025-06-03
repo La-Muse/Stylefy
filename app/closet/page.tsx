@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Header } from "@/components/ui/header"
 
-export function ClosetScreen() {
+export default function ClosetPage() {
   const [selectedCategory, setSelectedCategory] = useState("すべて")
 
   const categories = ["すべて", "トップス", "アウター", "ボトムス", "ワンピース"]

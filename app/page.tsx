@@ -1,118 +1,83 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { SplashScreen } from "@/components/screens/splash-screen"
-import { WelcomeScreen } from "@/components/screens/welcome-screen"
-import { DiagnosisScreen } from "@/components/screens/diagnosis-screen"
-import { ResultScreen } from "@/components/screens/result-screen"
-import { SignupScreen } from "@/components/screens/signup-screen"
-import { HomeScreen } from "@/components/screens/home-screen"
-import { SearchScreen } from "@/components/screens/search-screen"
-import { TryOnScreen } from "@/components/screens/tryon-screen"
-import { MyPageScreen } from "@/components/screens/mypage-screen"
-import { PlansScreen } from "@/components/screens/plans-screen"
-import { ClosetScreen } from "@/components/screens/closet-screen"
-import { StatusBar } from "@/components/ui/status-bar"
-import { Navigation } from "@/components/ui/navigation"
-import { StorageLimitModal } from "@/components/modals/storage-limit-modal"
-import { PlanComparisonModal } from "@/components/modals/plan-comparison-modal"
+import { Button } from "@/components/ui/button"
 
-export type ScreenType =
-  | "splash-screen"
-  | "welcome-screen"
-  | "diagnosis-screen"
-  | "result-screen"
-  | "signup-screen"
-  | "home-screen"
-  | "search-screen"
-  | "tryon-screen"
-  | "mypage-screen"
-  | "plans-screen"
-  | "closet-screen"
+interface HomeScreenProps {
+  onSave: () => void
+}
 
-export default function Home() {
-  const [currentScreen, setCurrentScreen] = useState<ScreenType>("splash-screen")
-  const [previousScreen, setPreviousScreen] = useState<ScreenType>("splash-screen")
-  const [showStorageModal, setShowStorageModal] = useState(false)
-  const [showPlanModal, setShowPlanModal] = useState(false)
-
-  useEffect(() => {
-    // Auto-transition from splash to welcome after 3 seconds
-    if (currentScreen === "splash-screen") {
-      const timer = setTimeout(() => {
-        switchScreen("welcome-screen")
-      }, 3000)
-      return () => clearTimeout(timer)
-    }
-  }, [currentScreen])
-
-  const switchScreen = (screenId: ScreenType) => {
-    setPreviousScreen(currentScreen)
-    setCurrentScreen(screenId)
-  }
-
-  const goBack = () => {
-    if (previousScreen) {
-      switchScreen(previousScreen)
-    }
-  }
-
-  const renderScreen = () => {
-    switch (currentScreen) {
-      case "splash-screen":
-        return <SplashScreen />
-      case "welcome-screen":
-        return <WelcomeScreen onNext={() => switchScreen("diagnosis-screen")} />
-      case "diagnosis-screen":
-        return <DiagnosisScreen onNext={() => switchScreen("result-screen")} onBack={goBack} />
-      case "result-screen":
-        return <ResultScreen onNext={() => switchScreen("signup-screen")} onBack={goBack} />
-      case "signup-screen":
-        return <SignupScreen onNext={() => switchScreen("home-screen")} onBack={goBack} />
-      case "home-screen":
-        return <HomeScreen onSave={() => setShowStorageModal(true)} />
-      case "search-screen":
-        return <SearchScreen onBack={goBack} />
-      case "tryon-screen":
-        return <TryOnScreen onSave={() => setShowStorageModal(true)} />
-      case "mypage-screen":
-        return <MyPageScreen onUpgrade={() => switchScreen("plans-screen")} />
-      case "plans-screen":
-        return <PlansScreen onBack={goBack} onCompare={() => setShowPlanModal(true)} />
-      case "closet-screen":
-        return <ClosetScreen />
-      default:
-        return <SplashScreen />
-    }
-  }
-
-  const showNavigation = ["home-screen", "tryon-screen", "closet-screen", "mypage-screen"].includes(currentScreen)
-
+export default function HomePage() {
   return (
-    <div className="max-w-[430px] h-screen mx-auto bg-white relative overflow-hidden border border-gray-300 shadow-lg">
-      <StatusBar />
+    <div className="h-full">
+      <div className="p-4 bg-white border-b border-gray-200">
+        <h1 className="text-lg font-light tracking-[2px] uppercase">STYLEFY</h1>
+      </div>
 
-      <div className="absolute top-12 left-0 right-0 bottom-14 overflow-y-auto scrollbar-hide">{renderScreen()}</div>
+      <div className="p-4">
+        {/* User info */}
+        <div className="flex items-center justify-between pb-4 border-b border-gray-200 mb-5">
+          <div className="flex items-center">
+            <div className="w-9 h-9 bg-gray-900 rounded-full flex items-center justify-center text-white text-sm font-light tracking-wider">
+              A
+            </div>
+            <div className="ml-2">
+              <h2 className="font-normal text-sm tracking-wide">Aiko</h2>
+            </div>
+          </div>
+          <div className="bg-gray-100 text-gray-900 text-xs uppercase tracking-wide px-3 py-1 rounded-full">
+            骨格ストレート
+          </div>
+        </div>
 
-      {showNavigation && <Navigation currentScreen={currentScreen} onNavigate={switchScreen} />}
+        {/* Main featured item */}
+        <div className="mb-5">
+          <div className="relative">
+            <img
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E3%83%98%E3%82%99%E3%83%BC%E3%82%B7%E3%82%99%E3%83%A5%E3%83%86%E3%83%BC%E3%83%A9%E3%83%BC%E3%83%88%E3%82%99%E3%82%B3%E3%83%BC%E3%83%88-0FiNGjPKuHjMs124Vm0SgnP3QNDFlY.png"
+              alt="今日のおすすめコーデ"
+              className="w-full h-[420px] object-cover"
+            />
+            <div className="absolute bottom-4 right-4 bg-white text-gray-900 w-12 h-12 flex flex-col items-center justify-center font-normal tracking-wide">
+              <span className="text-base">95%</span>
+            </div>
+          </div>
+          <div className="py-4">
+            <h3 className="font-normal text-base mb-2 uppercase tracking-wider">ベージュテーラードコート</h3>
+            <div className="flex gap-2">
+              <Button variant="outline" className="flex-1 text-xs h-10 uppercase tracking-wider">
+                <i className="fas fa-tshirt mr-1"></i> 試着
+              </Button>
+              <Button className="flex-1 text-xs h-10 uppercase tracking-wider">
+                <i className="fas fa-heart mr-1"></i> 保存
+              </Button>
+            </div>
+          </div>
+        </div>
 
-      <StorageLimitModal
-        isOpen={showStorageModal}
-        onClose={() => setShowStorageModal(false)}
-        onUpgrade={() => {
-          setShowStorageModal(false)
-          switchScreen("plans-screen")
-        }}
-      />
+        {/* AI consultation input */}
+        <div className="relative mb-4 border-t border-gray-200 pt-5">
+          <input
+            type="text"
+            className="w-full h-12 bg-white border-0 pl-12 pr-12 text-sm"
+            placeholder="AIスタイリストに相談"
+          />
+          <i className="fas fa-comment-alt absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+          <button className="absolute right-1 top-1/2 transform -translate-y-1/2 w-9 h-9 bg-transparent">
+            <i className="fas fa-paper-plane text-gray-900"></i>
+          </button>
+        </div>
 
-      <PlanComparisonModal
-        isOpen={showPlanModal}
-        onClose={() => setShowPlanModal(false)}
-        onSelectPremium={() => {
-          setShowPlanModal(false)
-          // Handle premium selection
-        }}
-      />
+        {/* Storage indicator */}
+        <div className="mt-auto border-t border-gray-200 pt-5">
+          <div className="flex items-center justify-between mb-1.5">
+            <span className="text-xs text-gray-600 uppercase tracking-wider">保存容量</span>
+            <span className="text-xs text-gray-600 font-medium">27/30</span>
+          </div>
+          <div className="h-px bg-gray-300 overflow-hidden">
+            <div className="w-[90%] h-full bg-gray-900"></div>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

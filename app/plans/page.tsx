@@ -8,7 +8,7 @@ interface PlansScreenProps {
   onCompare: () => void
 }
 
-export function PlansScreen({ onBack, onCompare }: PlansScreenProps) {
+export default function PlansPage({ onBack, onCompare }: PlansScreenProps) {
   const plans = [
     {
       name: "プレミアムプラン",

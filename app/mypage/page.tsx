@@ -7,7 +7,7 @@ interface MyPageScreenProps {
   onUpgrade: () => void
 }
 
-export function MyPageScreen({ onUpgrade }: MyPageScreenProps) {
+export default function MyPagePage({ onUpgrade }: MyPageScreenProps) {
   const favoriteItems = [
     "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E3%83%98%E3%82%99%E3%83%BC%E3%82%B7%E3%82%99%E3%83%A5%E3%83%86%E3%83%BC%E3%83%A9%E3%83%BC%E3%83%88%E3%82%99%E3%82%B3%E3%83%BC%E3%83%88-0FiNGjPKuHjMs124Vm0SgnP3QNDFlY.png",
     "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%E3%82%AB%E3%82%B7%E3%82%99%E3%83%A5%E3%82%A2%E3%83%AB%E3%83%86%E3%82%99%E3%83%8B%E3%83%A0-9EbPmASwE48epIbxeS9U0oZOZavuvO.png",
