@@ -24,6 +24,12 @@ export default function RootLayout({
   };
   return (
     <html lang="ja">
+      <head>
+        <link rel="stylesheet" href="../public/fonts/NotoSansJP-Regular.otf" />
+        <link rel="manifest" href="../public/manifest.json" />
+        <link rel="apple-touch-icon" href="../public/icon.png" />
+        <meta name="theme-color" content="#b8e986" />
+      </head>
       <body className="max-w-[430px] h-screen mx-auto bg-white relative overflow-hidden border border-gray-300 shadow-lg">
         <header>
           <StatusBar />
