@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "check": "biome check --write ."
+    "check": "biome check --write .",
+    "postinstall": "lefthook install",
+    "lefthook": "lefthook"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
