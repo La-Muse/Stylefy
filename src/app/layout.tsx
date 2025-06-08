@@ -26,6 +26,7 @@ export default function RootLayout({
     <html lang="ja">
       <head>
         <link rel="stylesheet" href="../public/fonts/NotoSansJP-Regular.otf" />
+        <link rel="stylesheet" href="../styles/logo.css" />
         <link rel="manifest" href="../public/manifest.json" />
         <link rel="apple-touch-icon" href="../public/icon.png" />
         <meta name="theme-color" content="#b8e986" />
